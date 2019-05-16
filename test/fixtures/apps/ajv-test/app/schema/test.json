@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "id": {
+      "$ref": "schema.definition#/int"
+    },
+    "test": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "password",
+    "id"
+  ],
+  "additionalProperties": false
+}
