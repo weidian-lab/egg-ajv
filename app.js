@@ -24,15 +24,21 @@ class AppBootHook {
     });
     app.ajv = ajv;
 
-    const { keyword = 'schema' } = app.config.ajv || {};
-    app.loader.loadToApp(join(app.baseDir, `app/${keyword}`), keyword, {
+    const { keyword = 'schema', ignoreCaseStype = false } = app.config.ajv || {};
+    const opts = {
       match: '**/*.@(js|json)',
       initializer(exp, { path, pathName }) {
         assert(app.ajv.validateSchema(exp), `${path} should be a valid schema`);
         app.ajv.addSchema(Object.assign({ $id: pathName }, exp), pathName);
         return exp;
       },
-    });
+    };
+
+    if (ignoreCaseStype) {
+      opts.caseStyle = filepath => filepath.substring(0, filepath.lastIndexOf('.')).split('/');
+    }
+
+    app.loader.loadToApp(join(app.baseDir, `app/${keyword}`), keyword, opts);
   }
 }
 

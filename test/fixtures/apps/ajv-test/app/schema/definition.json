@@ -1,0 +1,34 @@
+{
+    "chatroomId": {
+        "type": "string",
+        "pattern": "^.*@chatroom$"
+    },
+    "url": {
+        "type": "string",
+        "pattern": "^http(s)?:\/\/.*"
+    },
+    "int": {
+        "type": "number"
+    },
+    "property": {
+        "$comment": "下发指令的附加数据",
+        "type": "object",
+        "required": [
+            "commandId",
+            "usrName"
+        ],
+        "properties": {
+            "commandId": {
+                "type": "string"
+            },
+            "usrName": {
+                "type": "string",
+                "$comment": "发送者微信id"
+            },
+            "replyTag": {
+                "type": "string",
+                "$comment": "消息上报的tag"
+            }
+        }
+    }
+}
