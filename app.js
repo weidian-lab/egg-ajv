@@ -24,7 +24,7 @@ class AppBootHook {
     });
     app.ajv = ajv;
 
-    const { keyword = 'schema', ignoreCaseStype = false } = app.config.ajv || {};
+    const { keyword = 'schema', ignoreCaseStyle = false } = app.config.ajv || {};
     const opts = {
       match: '**/*.@(js|json)',
       initializer(exp, { path, pathName }) {
@@ -34,7 +34,7 @@ class AppBootHook {
       },
     };
 
-    if (ignoreCaseStype) {
+    if (ignoreCaseStyle) {
       opts.caseStyle = filepath => filepath.substring(0, filepath.lastIndexOf('.')).split('/');
     }
 

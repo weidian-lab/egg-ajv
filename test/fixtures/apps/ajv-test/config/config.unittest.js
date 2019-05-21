@@ -6,3 +6,7 @@ exports.middleware = [ 'error' ];
 exports.security = {
   csrf: false,
 };
+
+exports.ajv = {
+  ignoreCaseStyle: true,
+};
